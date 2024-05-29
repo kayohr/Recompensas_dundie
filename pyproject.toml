@@ -1,0 +1,63 @@
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q -vv"
+testpaths = [
+    "tests",
+    "integration"
+]
+
+[tool.flake8]
+exclude = [".venv", "build"]
+max-line-length = 79
+# extend-ignore = "W293,"
+
+[tool.black]
+line-length = 79
+target-version = ["py36", "py37"]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.venv
+  | _build
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+src_paths = ["dundie", "tests", "integration"]
+multi_line_output = 3  # VHI
+
+[tool.poetry]
+name = "dundie"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+packages = [
+    { include = "dundie" },
+    { include = "dundie/**/*.py" },
+]
+
+[tool.poetry.scripts]
+dundie = 'dundie.__main__:main'
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pytest = "^7.1.1"
+pytest-watch = "^4.2.0"
+
+[tool.poetry.dev-dependencies]
+ipython = "^8.1.1"
+ipdb = "^0.13.9"
+pudb = "^2022.1.1"
+flake8 = "^4.0.1"
+pyproject-flake8 = "^0.0.1-alpha.2"
+black = "^22.1.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
